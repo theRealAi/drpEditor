@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drp editor</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%23e46e2e'/><text x='8' y='12' font-size='10' text-anchor='middle' fill='white' font-family='monospace'>d</text></svg>">
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand"><span class="brand-mark"></span>drp<b>editor</b></div>
+    <div class="open-controls">
+      <input id="path-input" type="text" spellcheck="false"
+             placeholder="Path to a .drp file, e.g. E:\Projects\MyFilm.drp">
+      <button id="open-btn" class="btn">Open</button>
+      <button id="upload-btn" class="btn ghost">Upload&hellip;</button>
+      <input id="file-input" type="file" accept=".drp" hidden>
+    </div>
+    <div class="top-actions">
+      <button id="undo-btn" class="btn ghost" title="Undo last change (Ctrl+Z)" disabled>&#8630; Undo</button>
+      <a id="download-btn" class="btn ghost disabled" href="/api/download" download>Download</a>
+      <button id="save-btn" class="btn primary" disabled>Save new version</button>
+    </div>
+  </header>
+
+  <div id="layout" class="hidden">
+    <aside id="sidebar">
+      <section class="card" id="project-card"></section>
+      <section class="card" id="validation-card"></section>
+      <nav class="card" id="nav-card"></nav>
+    </aside>
+
+    <main id="main">
+      <div id="toolbar">
+        <h2 id="view-title">All clips</h2>
+        <input id="search-input" type="search" placeholder="Filter by name or UUID&hellip;" spellcheck="false">
+        <div class="toolbar-spacer"></div>
+        <span id="selection-info" class="muted"></span>
+        <button id="remove-btn" class="btn danger" disabled>Remove selected</button>
+      </div>
+      <div id="table-container"></div>
+    </main>
+
+    <aside id="details" class="hidden"></aside>
+  </div>
+
+  <div id="empty-state">
+    <div id="drop-zone">
+      <div class="drop-icon">&#8615;</div>
+      <h1>Open a DaVinci Resolve project</h1>
+      <p>Enter a path above, click <b>Upload</b>, or drop a <code>.drp</code> file here.</p>
+      <p class="muted">Broken projects welcome &mdash; validation issues are shown, everything
+        you don't touch is preserved byte-for-byte.</p>
+    </div>
+  </div>
+
+  <footer id="statusbar">
+    <span id="patch-status" class="muted">No project open</span>
+    <div class="toolbar-spacer"></div>
+    <div id="version-chips"></div>
+  </footer>
+
+  <div id="toasts"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

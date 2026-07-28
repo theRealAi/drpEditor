@@ -1,0 +1,10 @@
+{
+  "clip": [
+    {
+      "name": "super_scale",
+      "offset": 72,
+      "type": "uint8",
+      "description": "AI Super Scale mode; 0 = disabled. EXAMPLE OFFSET: map the real offset for your Resolve version with 'drp diff' before use."
+    }
+  ]
+}
